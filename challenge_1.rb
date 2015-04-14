@@ -14,6 +14,13 @@
 #   http://en.wikipedia.org/wiki/Mortgage_calculator
 
 def pmt(rate, nper, pv)
+	rate_calc = 1+rate
+	power = rate_calc**nper
+	numerator = pv*rate*power
+	denominator = power - 1
+	payment = numerator / denominator
+	# payment = (pv*(1+rate)**nper) / ((1+rate)**nper)-1)
+	return payment
   # =========================================================
   # Your code to implement the method goes here.
   # You shouldn't have to write or change code anywhere else.
@@ -24,7 +31,7 @@ end
 #   and once you have successfully defined it, re-comment them (before
 #   starting challenge_2.rb).
 
-# the_payment = pmt(0.0404/12, 60, 30000)
-# puts "Your monthly payment will be $#{the_payment.round(2)}."
+the_payment = pmt(0.0404/12, 60, 30000)
+puts "Your monthly payment will be $#{the_payment.round(2)}."
 
 # You should get $553.04.
